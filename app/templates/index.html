@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title %} title {% endblock %}
+    </title>
+
+    {% block link %}
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <!-- custom css file link  -->
+    {% endblock %}
+    <script>
+        function predict() {
+            fetch("/api/predict", {
+                method: 'post',
+                body: JSON.stringify({
+                    male: document.querySelector('#male').value,
+                    age: document.querySelector('#age').value,
+                    currentSmoker: document.querySelector('#currentSmoker').value,
+                    cigsPerDay: document.querySelector('#cigsPerDay').value,
+                    BPMeds: document.querySelector('#BPMeds').value,
+                    prevalentStroke: document.querySelector('#prevalentStroke').value,
+                    prevalentHyp: document.querySelector('#prevalentHyp').value,
+                    diabetes: document.querySelector('#diabetes').value,
+                    totChol: document.querySelector('#totChol').value,
+                    sysBP: document.querySelector('#sysBP').value,
+                    diaBP: document.querySelector('#diaBP').value,
+                    BMI: document.querySelector('#BMI').value,
+                    heartRate: document.querySelector('#heartRate').value,
+                    glucose: document.querySelector('#glucose').value
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function(res) {
+                console.info(res)
+                return res.json()
+            }).then(function(data) {
+                console.info(data)
+                document.querySelector('#result').innerText = data['msg'];
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% block header %}
+                    <h1 class="text-center">Dự đoán ...</h1>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block content %}
+            <form action="" method="" class="row">
+<!--                male	age	currentSmoker	cigsPerDay	BPMeds	prevalentStroke	prevalentHyp	diabetes	totChol	sysBP	diaBP	BMI	heartRate	glucose-->
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="male">Giới tính:</label><br>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               name="male" id="male" value=1>Nam
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               name="male" id="male" value=0>Nữ
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="currentSmoker">Hiện tại có hút thuốc:</label><br>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="currentSmoker" name="currentSmoker" value=1>Có
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="currentSmoker" name="currentSmoker" value=0>Không
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BPMeds">Có đang sử dụng thuốc huyết áp:</label><br>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="BPMeds" name="BPMeds" value=1>Có
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="BPMeds" name="BPMeds" value=0>Không
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prevalentHyp">Có bị bệnh tăng huyết áp không:</label><br>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="prevalentHyp" name="prevalentHyp" value=1>Có
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="prevalentHyp" name="prevalentHyp" value=0>Không
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prevalentStroke">Có từng bị đột quỵ:</label><br>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="prevalentStroke", name="prevalentStroke" value=1>Có
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="prevalentStroke", name="prevalentStroke" value=0>Không
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="diabetes">Có bị bệnh tiểu đường không:</label><br>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="diabetes" name="diabetes" value=1>Có
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                               id="diabetes" name="diabetes" value=0>Không
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            
+                            <div class="form-group">
+                                <label for="age">Tuổi:</label>
+                                <input type="number" class="form-control"
+                                       placeholder="Nhập tuổi của bạn"
+                                       id="age" name="age">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cigsPerDay">Số điếu thuốc hút trung bình 1 ngày:</label>
+                                <input type="number" class="form-control"
+                                       placeholder="" value=0
+                                       id="cigsPerDay" name="cigsPerDay">
+                            </div>
+                            <div class="form-group">
+                                <label for="sysBP">Huyết áp tâm thu:</label>
+                                <input type="number" class="form-control"
+                                placeholder="Huyết áp tâm thu của bạn" step="0.5"
+                                id="sysBP" name="sysBP">
+                            </div>
+                            <div class="form-group">
+                                <label for="diaBP">Huyết áp tâm trương:</label>
+                                <input type="number" class="form-control"
+                                placeholder="Huyết áp tâm trương của bạn" step="0.5"
+                                id="diaBP" name="diaBP">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="totChol">Tổng mức cholesterol:</label>
+                                <input type="number" class="form-control"
+                                placeholder="Tổng mức cholesterol của bạn"
+                                id="totChol" name="totChol">
+                            </div>
+                            <div class="form-group">
+                                <label for="BMI">Chỉ số khối cơ thể:</label>
+                                <input type="number" class="form-control"
+                                placeholder="Chỉ số BMI của bạn" step="0.01"
+                                id="BMI" name="BMI">
+                            </div>
+                            <div class="form-group">
+                                <label for="heartRate">Nhịp tim:</label>
+                                <input type="number" class="form-control"
+                                placeholder="Nhịp tim của bạn"
+                                id="heartRate" name="heartRate">
+                            </div>
+                            <div class="form-group">
+                                <label for="glucose">Nồng độ glucose:</label>
+                                <input type="number" class="form-control"
+                                       placeholder="Nồng độ glucose của bạn"
+                                       id="glucose" name="glucose">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary"
+                                onclick="predict();"
+                                align="center">Dự đoán</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <h3 id="result" align="center"></h3>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        <div class="row">
+            <div class="col">
+                {% block footer %}
+                    <h1 class="text-center">Nhóm ...</h1>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
