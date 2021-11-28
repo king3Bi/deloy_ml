@@ -79,110 +79,50 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="male">Giới tính:</label><br>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               name="male" id="male" value=1>Nam
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               name="male" id="male" value=0>Nữ
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="currentSmoker">Hiện tại có hút thuốc:</label><br>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="currentSmoker" name="currentSmoker" value=1>Có
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="currentSmoker" name="currentSmoker" value=0>Không
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="BPMeds">Có đang sử dụng thuốc huyết áp:</label><br>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="BPMeds" name="BPMeds" value=1>Có
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="BPMeds" name="BPMeds" value=0>Không
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="prevalentHyp">Có bị bệnh tăng huyết áp không:</label><br>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="prevalentHyp" name="prevalentHyp" value=1>Có
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="prevalentHyp" name="prevalentHyp" value=0>Không
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="prevalentStroke">Có từng bị đột quỵ:</label><br>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="prevalentStroke", name="prevalentStroke" value=1>Có
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="prevalentStroke", name="prevalentStroke" value=0>Không
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="diabetes">Có bị bệnh tiểu đường không:</label><br>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="diabetes" name="diabetes" value=1>Có
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input"
-                                               id="diabetes" name="diabetes" value=0>Không
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            
-                            <div class="form-group">
                                 <label for="age">Tuổi:</label>
                                 <input type="number" class="form-control"
                                        placeholder="Nhập tuổi của bạn"
                                        id="age" name="age">
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="male">Giới tính:</label>
+                                <select class="form-control" id="male">
+                                    <option disabled>Chọn giới tính</option>
+                                    <option value=1>Nam</option>
+                                    <option value=0>Nữ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="currentSmoker">Hiện tại có hút thuốc:</label>
+                                <select class="form-control" id="currentSmoker">
+                                    <option disabled>Hiện tại có hút thuốc không?</option>
+                                    <option value=1>Có</option>
+                                    <option value=0>Không</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="cigsPerDay">Số điếu thuốc hút trung bình 1 ngày:</label>
                                 <input type="number" class="form-control"
                                        placeholder="" value=0
                                        id="cigsPerDay" name="cigsPerDay">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="BPMeds">Có đang sử dụng thuốc huyết áp:</label>
+                                <select class="form-control" id="BPMeds">
+                                    <option disabled>Có đang sử dụng thuốc huyết áp không?</option>
+                                    <option value=1>Có</option>
+                                    <option value=0>Không</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="prevalentHyp">Có bị bệnh tăng huyết áp không:</label>
+                                <select class="form-control" id="prevalentHyp">
+                                    <option disabled>Có bị bệnh tăng huyết áp không?</option>
+                                    <option value=1>Có</option>
+                                    <option value=0>Không</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="sysBP">Huyết áp tâm thu:</label>
@@ -196,8 +136,17 @@
                                 placeholder="Huyết áp tâm trương của bạn" step="0.5"
                                 id="diaBP" name="diaBP">
                             </div>
+                            
                         </div>
                         <div class="col">
+                            <div class="form-group">
+                                <label for="prevalentStroke">Có từng bị đột quỵ:</label>
+                                <select class="form-control" id="prevalentStroke">
+                                    <option disabled>Có từng bị đột quỵ không?</option>
+                                    <option value=1>Có</option>
+                                    <option value=0>Không</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="totChol">Tổng mức cholesterol:</label>
                                 <input type="number" class="form-control"
@@ -215,6 +164,17 @@
                                 <input type="number" class="form-control"
                                 placeholder="Nhịp tim của bạn"
                                 id="heartRate" name="heartRate">
+                            </div>
+                            
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="diabetes">Có bị bệnh tiểu đường không:</label>
+                                <select class="form-control" id="diabetes">
+                                    <option disabled>Có bị bệnh tiểu đường không?</option>
+                                    <option value=1>Có</option>
+                                    <option value=0>Không</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="glucose">Nồng độ glucose:</label>
