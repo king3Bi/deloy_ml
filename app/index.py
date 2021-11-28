@@ -24,15 +24,18 @@ def predict():
         result = randforest_clf.predict(X)
     except Exception as e:
         return jsonify({
+            'code': -1,
             'msg': 'Nhập đầy đủ dữ liệu'
         })
 
     if result[0] == 0:
         return jsonify({
+            'code': 0,
             'msg': 'Không có khả năng'
         })
     elif result[0] == 1:
         return jsonify({
+            'code': 1,
             'msg': 'Có khả năng'
         })
     else:
