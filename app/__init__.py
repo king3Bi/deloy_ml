@@ -9,8 +9,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-randforest_clf = joblib.load('G:\ml_code\deloy_model\\app\models\\best_randforest_clf')
-# randforest_clf = joblib.load('models/best_randforest_clf')
+randforest_clf = joblib.load('models/best_randforest_clf')
 
 class ColumnSelector(BaseEstimator, TransformerMixin):
     def __init__(self, feature_names):
@@ -32,6 +31,7 @@ bool_pipeline = Pipeline([
     ('selector', ColumnSelector(bool_feat_names)),
     ('imputer', SimpleImputer(missing_values=np.nan, strategy="constant", fill_value=0, copy=True))
     ])
+
 full_pipeline = FeatureUnion(transformer_list=[
     ("num_pipeline", num_pipeline),
-    ("cat_pipeline", bool_pipeline) ])
+    ("cat_pipeline", bool_pipeline)])

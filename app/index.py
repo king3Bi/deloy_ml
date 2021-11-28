@@ -13,7 +13,6 @@ def predict():
     req = request.json
     # male	age	currentSmoker	cigsPerDay	BPMeds	prevalentStroke	prevalentHyp	diabetes	totChol	sysBP	diaBP	BMI	heartRate	glucose
     data = getDataFromRequestPost(req)
-
     df = pd.DataFrame(data)
 
     X = full_pipeline.fit_transform(df)
@@ -26,7 +25,6 @@ def predict():
             'msg': 'Nhập đầy đủ dữ liệu'
         })
 
-    #print(result)
     data_result = {
         'code': 200,
         'percent': round(result*100, 2)
