@@ -4,7 +4,6 @@ from app.utils import getDataFromRequestPost
 from flask import render_template, request, jsonify
 import pandas as pd
 
-
 @app.route('/', methods=['get'])
 def index():
     return render_template('index.html')
@@ -21,29 +20,27 @@ def predict():
     X = full_pipeline.fit_transform(df)
 
     try:
-        result = randforest_clf.predict(X)
+        # result = randforest_clf.predict(X)
+        result = randforest_clf.predict_proba(X)[:,1][0]
     except Exception as e:
         return jsonify({
-            'code': -1,
+            'code': 404,
             'msg': 'Nhập đầy đủ dữ liệu'
         })
 
-    if result[0] == 0:
-        return jsonify({
-            'code': 0,
-            'msg': 'Bạn có một sức khỏe rất tốt, hãy cố gắng duy trì'
-        })
-    elif result[0] == 1:
-        return jsonify({
-            'code': 1,
-            'msg': 'Kết quả là có nguy cơ, '
-                   'nhưng bạn đừng lo lắng, hãy bỏ những thói quen xấu ảnh hưởng tới sức khỏe, '
-                   'luyện tập thể dục để có sức khỏe tốt'
-        })
+    print(result)
+    data_result = {
+        'code': 200,
+        'percent': round(result*100, 2)
+    }
+
+    if result < 0.5:
+        data_result['msg'] = 'Bạn có một sức khỏe rất tốt, hãy cố gắng duy trì'
     else:
-        return jsonify({
-            'msg': ''
-        })
+        data_result['msg'] = 'Kết quả là có nguy cơ, ' \
+                             'nhưng bạn đừng lo lắng, hãy bỏ những thói quen xấu ảnh hưởng tới sức khỏe, ' \
+                             'luyện tập thể dục để có sức khỏe tốt'
+    return data_result
 
 if __name__ == '__main__':
     app.run(debug=True)

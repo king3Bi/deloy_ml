@@ -47,12 +47,15 @@
             }).then(function(data) {
                 console.info(data);
 
-                if (data.code == -1) {
+                if (data.code == 404) {
                     document.querySelector('#result').classList.add("alert-danger");
-                } else if (data.code == 0) {
-                    document.querySelector('#result').classList.add("alert-success");
-                } else if (data.code == 1) {
-                    document.querySelector('#result').classList.add("alert-warning");
+                } else if (data.code == 200) {
+                    if (data.percent > 0.5) {
+                        document.querySelector('#result').classList.add("alert-success");
+                    } else {
+                        document.querySelector('#result').classList.add("alert-warning");
+                    }
+                    document.querySelector('#percent_result').innerText = 'Nguy cơ mắc bệnh tim của bạn là: ' + data['percent'] + '%';
                 }
 
                 document.querySelector('#msg_result').innerText = data['msg'];
@@ -202,7 +205,8 @@
             <div class="row">
                 <div class="col">
                     <div id="result" class="alert d-flex justify-content-center">
-                        <strong id="msg_result" align="center"></strong>
+                        <strong id="percent_result" class="mr-4"></strong>
+                        <span id="msg_result" align="center"></span>
                     </div>
                 </div>
             </div>
