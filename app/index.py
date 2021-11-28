@@ -13,14 +13,12 @@ def predict():
     req = request.json
     # male	age	currentSmoker	cigsPerDay	BPMeds	prevalentStroke	prevalentHyp	diabetes	totChol	sysBP	diaBP	BMI	heartRate	glucose
     data = getDataFromRequestPost(req)
-    print(data)
 
     df = pd.DataFrame(data)
 
     X = full_pipeline.fit_transform(df)
 
     try:
-        # result = randforest_clf.predict(X)
         result = randforest_clf.predict_proba(X)[:,1][0]
     except Exception as e:
         return jsonify({
@@ -28,7 +26,7 @@ def predict():
             'msg': 'Nhập đầy đủ dữ liệu'
         })
 
-    print(result)
+    #print(result)
     data_result = {
         'code': 200,
         'percent': round(result*100, 2)

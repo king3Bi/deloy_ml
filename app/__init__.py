@@ -25,8 +25,7 @@ bool_feat_names=['male', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes'
 
 num_pipeline = Pipeline([
     ('selector', ColumnSelector(num_feat_names)),
-    ('imputer', SimpleImputer(missing_values=np.nan, strategy="median", copy=True)),
-    ('std_scaler', StandardScaler(with_mean=True, with_std=True, copy=True))
+    ('imputer', SimpleImputer(missing_values=np.nan, strategy="median", copy=True))
     ])
 
 bool_pipeline = Pipeline([
